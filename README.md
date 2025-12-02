@@ -1,4 +1,4 @@
-# Bipedal Robot Locomotion Framework: A Modular Behaviour Tree Architecture for ROS2
+# AETHER I - Bipedal Robot Locomotion Framework: A Modular Behaviour Tree Architecture for ROS2
 
 ## Table of Contents
 
@@ -33,7 +33,7 @@
 
 ## Project Description
 
-This repository presents a **research-oriented framework** for robotic locomotion in ROS2.  
+As a part of the [AETHER Framework Series](https://github.com/marvin-hermann-research/aether-framework-overview.git), this repository presents a **research-oriented framework** for robotic locomotion in ROS2.  
 It integrates **Behaviour Trees (BTs)** with a **distributed sensor–actuator architecture**, enabling structured decision-making and extensible, modular control of humanoid robots.
 
 ## Motivation
@@ -399,13 +399,10 @@ The framework is designed for modular expansion:
 
 ## Future Work
 
-A dedicated hardware project building upon this framework is currently planned.  
-The goal is to control a simple, stationary robot arm using **simulated neuromorphic sensors**.  
-These sensors will be implemented using conventional hardware (e.g. ESP32), but will emulate neuromorphic behaviour through event-driven signal processing.  
+A dedicated hardware project building upon this framework is currently planned.
+The goal is to control a simple, stationary robot arm using simulated neuromorphic sensors, implemented on conventional hardware (e.g., ESP32) but emulating event-driven behaviour.
 
-The robot arm will support four distinct movement patterns, each of which can be executed either **continuously** or as a **one-shot** action.  
-
-This future work aims to validate the current software stack on real hardware and explore the integration of neuromorphic-inspired input into behaviour tree–based control.
+This work serves as a bridge towards the next iterations in the [AETHER Series](https://github.com/marvin-hermann-research/aether-framework-overview.git), validating the software stack on physical hardware and preparing for more complex, multi-agent and AI-driven control systems in future AETHER versions.
 
 ## License
 
