@@ -41,6 +41,8 @@ class MovementControllerNode(Node):
             self._current_pattern = None                  # Currently active motion sequence
             self._pattern_start_time = None               # Reference time for pattern playback
             self._pattern_step_index = 0                  # Current index in step sequence
+            self._active_pattern_name = None              # NEW: holds currently running pattern name
+            
             self._timer = self.create_timer(0.05, self._pattern_timer_callback)  # ~20 Hz control loop
 
             self.get_logger().info("Movement Controller Node has been started.")
@@ -75,8 +77,11 @@ class MovementControllerNode(Node):
         )
 
     def _idle_callback(self, instruction):
-        # TODO: Implement behavior-specific idle instructions
-        pass
+        """
+        Callback triggered when the IdleBehaviour node becomes active.
+        Loads and begins execution of the 'idle_pattern' motion pattern.
+        """
+        self._load_and_start_pattern("idle")
 
     def _walk_forward_callback(self, instruction):
         """
@@ -92,6 +97,13 @@ class MovementControllerNode(Node):
         Args:
             pattern_name (str): Name of the pattern to load, as defined in patterns.yaml
         """
+
+        # ----------------------------
+        # NEW: Prevent constant reload
+        # ----------------------------
+        if self._active_pattern_name == pattern_name:
+            return
+
         try:
             path = self._patterns.get(pattern_name)
             if path is None:
@@ -107,6 +119,8 @@ class MovementControllerNode(Node):
 
             self._pattern_start_time = time.time()
             self._pattern_step_index = 0
+            self._active_pattern_name = pattern_name  # NEW: mark pattern as active
+
             self.get_logger().info(f"Loaded pattern {pattern_name}")
             self._json_logger.log("INFO", "Pattern Loaded", {"pattern": pattern_name})
         except Exception as e:
@@ -136,6 +150,7 @@ class MovementControllerNode(Node):
 
             if self._pattern_step_index >= len(self._current_pattern):
                 self._current_pattern = None
+                self._active_pattern_name = None  # NEW: allow next pattern to start
                 self.get_logger().info("Pattern execution completed.")
                 self._json_logger.log("INFO", "Pattern Execution Completed", {})
         except Exception as e:
@@ -153,12 +168,12 @@ class MovementControllerNode(Node):
             right_msg = Float32MultiArray()
 
             left_msg.data = [
-                float(joints.get("hip_left", 0.0)),
                 float(joints.get("knee_left", 0.0)),
+                float(joints.get("hip_left", 0.0)),
             ]
             right_msg.data = [
-                float(joints.get("hip_right", 0.0)),
                 float(joints.get("knee_right", 0.0)),
+                float(joints.get("hip_right", 0.0)),
             ]
 
             self._left_leg_publisher.publish(left_msg)

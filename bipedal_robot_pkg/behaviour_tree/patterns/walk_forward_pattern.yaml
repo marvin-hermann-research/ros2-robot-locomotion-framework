@@ -14,42 +14,79 @@
 # -----------------------------------------------------------------------------
 
 walk_forward:
-  # Initial phase: Left leg slightly lifted forward, right leg stable
   - time: 0.0
     joints:
-      hip_left: 20      # Left hip lifts forward
-      knee_left: 45     # Left knee bent for stepping
-      hip_right: 0      # Right leg remains stable
-      knee_right: 10    # Slight bend in right knee for stability
+      hip_left: 100
+      knee_left: 100
+      hip_right: 100        # 200 - 100
+      knee_right: 100
 
-  # Transition phase: Left leg lowering, right leg begins stepping
-  - time: 0.5
+  - time: 0.15
     joints:
-      hip_left: 0
-      knee_left: 10
-      hip_right: 20     # Right hip lifts forward
-      knee_right: 45
+      hip_left: 120
+      knee_left: 80
+      hip_right: 80         # 200 - 120
+      knee_right: 80
 
-  # Mid-stance phase: Left leg behind, right leg forward
-  - time: 1.0
+  - time: 0.3
     joints:
-      hip_left: -10     # Left hip moves slightly backward
-      knee_left: 10
+      hip_left: 140
+      knee_left: 60
+      hip_right: 60         # 200 - 140
+      knee_right: 60
+
+  - time: 0.45
+    joints:
+      hip_left: 160
+      knee_left: 40
+      hip_right: 40         # 200 - 160
+      knee_right: 40
+
+  - time: 0.6
+    joints:
+      hip_left: 180
+      knee_left: 95
+      hip_right: 20         # 200 - 180
+      knee_right: 95
+
+  - time: 0.75
+    joints:
+      hip_left: 100
+      knee_left: 100
+      hip_right: 100
+      knee_right: 100
+#---
+  - time: 0.9
+    joints:
+      hip_left: 80
+      knee_left: 80
+      hip_right: 80
+      knee_right: 120
+  
+  - time: 1.05
+    joints:
+      hip_left: 70
+      knee_left: 80
+      hip_right: 60
+      knee_right: 140
+
+  - time: 1.2
+    joints:
+      hip_left: 50
+      knee_left: 80
+      hip_right: 40
+      knee_right: 140
+
+  - time: 1.35
+    joints:
+      hip_left: 90
+      knee_left: 80
       hip_right: 20
-      knee_right: 45
+      knee_right: 105
 
-  # Preparing next step: Left leg remains back, right leg returns
   - time: 1.5
     joints:
-      hip_left: -10
-      knee_left: 30
-      hip_right: 0
-      knee_right: 10
-
-  # Cycle end/start: Back to initial position
-  - time: 2.0
-    joints:
-      hip_left: 20
-      knee_left: 45
-      hip_right: 0
-      knee_right: 10
+      hip_left: 100
+      knee_left: 100
+      hip_right: 100
+      knee_right: 100
