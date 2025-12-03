@@ -1,5 +1,6 @@
 from rclpy.node import Node
 from std_msgs.msg import Float32MultiArray
+from std_msgs.msg import Int32MultiArray
 
 class RightLegNode(Node):
     """
@@ -17,14 +18,22 @@ class RightLegNode(Node):
             10
         )
         self.get_logger().info("Right leg subscriber initialized.")
-        
+        self._publisher = self.create_publisher(
+            Int32MultiArray,
+            "/right/angles",
+            10
+        )
+        self.get_logger().info("Right leg publisher initialized.")
+
     def _listener_callback(self, instruction: Float32MultiArray):
         """
         Callback that handles incoming right leg instructions.
         Processes the Float32MultiArray command and forwards it to the actuator.
         """
         try:
-            # TODO: Implement execution logic for right leg instructions
-            pass
+            angles = Int32MultiArray()
+            angles.data = [int(x) for x in instruction.data]
+            self._publisher.publish(angles)
+            self.get_logger().info(f"Published right leg angles: {angles.data}")
         except Exception as e:
             self.get_logger().error(f"Error processing right leg instruction: {e}")

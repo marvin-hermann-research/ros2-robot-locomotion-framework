@@ -11,35 +11,35 @@
 idle:
   - time: 0.0
     joints:
-      hip_left: 0          # No hip displacement
-      knee_left: 10        # Initial small bend
-      hip_right: 0
-      knee_right: 10
+      hip_left: 100
+      knee_left: 100
+      hip_right: 100
+      knee_right: 100
 
   - time: 0.5
     joints:
-      hip_left: 0
-      knee_left: 15        # Slight increase in knee flexion
-      hip_right: 0
-      knee_right: 15
+      hip_left: 150
+      knee_left: 70
+      hip_right: 50
+      knee_right: 130
 
   - time: 1.0
     joints:
-      hip_left: 0
-      knee_left: 10        # Return to initial state
-      hip_right: 0
-      knee_right: 10
+      hip_left: 100
+      knee_left: 100
+      hip_right: 100
+      knee_right: 100
 
   - time: 1.5
     joints:
-      hip_left: 0
-      knee_left: 5         # Slight under-compensation
-      hip_right: 0
-      knee_right: 5
+      hip_left: 150
+      knee_left: 70
+      hip_right: 50
+      knee_right: 130
 
   - time: 2.0
     joints:
-      hip_left: 0
-      knee_left: 10        # Back to baseline
-      hip_right: 0
-      knee_right: 10
+      hip_left: 100
+      knee_left: 100
+      hip_right: 100
+      knee_right: 100
